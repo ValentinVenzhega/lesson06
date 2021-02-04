@@ -1,32 +1,32 @@
 'use strict';
 
-let isNumber = function(n){
+const isNumber = function(n){
    return !isNaN(parseFloat(n)) && isFinite(n);
-};
+},
+min = 1,
+max = 100,
+numberTwoRun = function () {
+   return (Math.round(Math.random() * (max - min + 1)) + min);
+},
+numberTwo = numberTwoRun();
 
-function foo() {
-   const a = +prompt('Угадай число от 1 до 100'),
-      b = 20;
-   console.log(a);
-   if( a > 100 && a !== b) {
-      alert('Загаданное число меньше');
-      foo();
-   } else if( a < 1 && a !== b && a !== 0) {
-      alert('Загаданное число больше');
-      foo();
-   }  else if ( 1 <= a <= 100 && a === b) {
-      alert('Поздравляю, Вы угадали!!!');
-   } else if( a >= 1 && a <= 100 && a !== b) {
-      alert('Угадай число от 1 до 100');
-      foo();
-   }else if( !isNumber(a)) {
-      alert('Введи число!');
-      foo();
-   } else if ( confirm('Введи число!')) {
-      foo();
-   } else {
+function numberRun() {
+   const numberOne = prompt('Угадай число от 1 до 100');
+
+   if ( numberOne === null) {
       alert('Игра окончена');
+   } else if( !isNumber(numberOne)) {
+      alert('Введи число!');
+      numberRun();
+   } else if ( +numberOne < numberTwo) {
+      alert('Загаданное число больше');
+      numberRun();
+   } else if ( +numberOne > numberTwo) {
+      alert('Загаданное число меньше');
+      numberRun();
+   } else if ( +numberOne === numberTwo) {
+      alert('Поздравляю, Вы угадали!!!');
+      
    }
 }
-foo();
-
+numberRun();
