@@ -21,11 +21,13 @@ function foo() {
       foo();
    }else if( !isNumber(a)) {
       alert('Введи число!');
+      
+   } else if ( confirm('Введи число!')) {
+     
       foo();
-   } else if (a === 0) {
-      alert('Игра окончена');
+      
    } else {
-      foo();
+      alert('Игра окончена');
    }
 }
 foo();
