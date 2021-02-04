@@ -21,11 +21,9 @@ function foo() {
       foo();
    }else if( !isNumber(a)) {
       alert('Введи число!');
-      
+
    } else if ( confirm('Введи число!')) {
-     
       foo();
-      
    } else {
       alert('Игра окончена');
    }
