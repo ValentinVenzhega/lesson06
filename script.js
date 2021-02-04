@@ -21,7 +21,7 @@ function foo() {
       foo();
    }else if( !isNumber(a)) {
       alert('Введи число!');
-
+      foo();
    } else if ( confirm('Введи число!')) {
       foo();
    } else {
