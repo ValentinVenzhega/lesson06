@@ -2,13 +2,13 @@
 
 const isNumber = function(n){
    return !isNaN(parseFloat(n)) && isFinite(n);
-},
-min = 1,
-max = 100,
-numberTwoRun = function () {
-   return (Math.round(Math.random() * (max - min + 1)) + min);
-},
-numberTwo = numberTwoRun();
+   },
+   min = 1,
+   max = 100,
+   numberTwoRun = function () {
+      return (Math.round(Math.random() * (max - min + 1)) + min);
+   },
+   numberTwo = numberTwoRun();
 
 function numberRun() {
    const numberOne = prompt('Угадай число от 1 до 100');
@@ -29,4 +29,5 @@ function numberRun() {
       
    }
 }
+
 numberRun();
