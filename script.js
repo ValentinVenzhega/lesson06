@@ -1,33 +1,70 @@
 'use strict';
 
+let numberTwoRun = function () {
+      return (Math.round(Math.random() * (100 - 1 + 1)) + 1);
+   },
+   numberTwo = numberTwoRun(),
+   count = 10;
+
 const isNumber = function(n){
-   return !isNaN(parseFloat(n)) && isFinite(n);
+      return !isNaN(parseFloat(n)) && isFinite(n);
    },
-   min = 1,
-   max = 100,
-   numberTwoRun = function () {
-      return (Math.round(Math.random() * (max - min + 1)) + min);
-   },
-   numberTwo = numberTwoRun();
-
-function numberRun() {
-   const numberOne = prompt('Угадай число от 1 до 100');
-
-   if ( numberOne === null) {
+   gameOver = function() {
       alert('Игра окончена');
-   } else if( !isNumber(numberOne)) {
-      alert('Введи число!');
-      numberRun();
-   } else if ( +numberOne < numberTwo) {
-      alert('Загаданное число больше');
-      numberRun();
-   } else if ( +numberOne > numberTwo) {
-      alert('Загаданное число меньше');
-      numberRun();
-   } else if ( +numberOne === numberTwo) {
-      alert('Поздравляю, Вы угадали!!!');
-      
-   }
-}
+   },
+   replay = function(msg) {
+      let replayGame = confirm(msg);
 
+      if(replayGame) {
+         count = 10;
+         numberRun();
+      } else {
+         gameOver();
+         return;
+      }
+   },
+   numberRun = function() {
+
+   const numberOne = prompt('Угадай число от 1 до 100', '3');
+
+   if ( count >= 0  ) { 
+
+      if ( numberOne === null) {
+         gameOver();
+      } else if( !isNumber(numberOne)) {
+         alert('Введи число');
+         numberRun();
+      } else if ( +numberOne < numberTwo ) {
+         --count;
+         alert(`Загаданное число больше, осталось попыток ${count}`);
+
+         if (count === 0) {
+            replay('Попытки закончились, хотите сыграть еще?');
+         } else {
+            numberRun();
+         }
+
+      } else if ( +numberOne > numberTwo ) {
+         --count;
+         alert(`Загаданное число меньше, осталось попыток ${count}`);
+         
+         if (count === 0) {
+            replay('Попытки закончились, хотите сыграть еще?');
+         } else {
+            numberRun();
+         }
+
+      } else if ( +numberOne === numberTwo) {
+         numberTwo = numberTwoRun();
+         replay('Поздравляю, Вы угадали!!! Хотели бы сыграть еще?');
+         
+      } else {
+         numberTwo = numberTwoRun();
+         replay('Попытки закончились, хотите сыграть еще?');
+      }
+   }
+
+   
+};
 numberRun();
+
